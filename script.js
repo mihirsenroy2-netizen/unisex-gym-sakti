@@ -1,113 +1,405 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<meta name="theme-color" content="#0b0b0d" />
+/* =========================================================
+   UNISEX GYM SAKTI — MAIN SCRIPT (FINAL / ERROR-FREE)
+   ========================================================= */
 
-<!-- ================= SEO ================= -->
-<title>Unisex Gym Sakti | Best Gym in Sakti, Chhattisgarh (495689)</title>
-<meta name="description" content="Unisex Gym Sakti — Sakti, Chhattisgarh ka sabse best unisex gym. Modern equipment, expert trainers, cardio, CrossFit, Zumba & personal training. Admission open! Call now." />
-<meta name="keywords" content="gym in Sakti, Unisex Gym Sakti, best gym Chhattisgarh, fitness centre Sakti 495689, ladies gym Sakti, personal trainer Sakti" />
-<meta name="author" content="Unisex Gym Sakti" />
-<link rel="canonical" href="https://unisexgymsakti.com/" />
+(function () {
+  "use strict";
 
-<!-- Open Graph -->
-<meta property="og:type" content="website" />
-<meta property="og:title" content="Unisex Gym Sakti | Train Hard. Transform Fast." />
-<meta property="og:description" content="Sakti, Chhattisgarh ka #1 unisex fitness destination. Modern equipment, certified trainers aur results jo dikhte hain." />
-<meta property="og:image" content="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=1200&q=80" />
+  /* =========================================================
+     ⚠️ APNA WHATSAPP NUMBER YAHAN BADLEIN
+     Format: Country code + Number (bina +, bina space)
+     Example: "919123456789"
+     ========================================================= */
+  var GYM_NUMBER = "919123456789";
 
-<!-- Favicon -->
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💪</text></svg>" />
+  /* =========================================================
+     PRELOADER — GUARANTEED HIDE (no window.load dependency)
+     Ye pehle atak jata tha, ab 1 second baad khud hat jayega.
+     ========================================================= */
+  function hidePreloader() {
+    var preloader = document.getElementById("preloader");
+    if (preloader) {
+      preloader.classList.add("hide");
+      setTimeout(function () {
+        preloader.style.display = "none";
+      }, 600);
+    }
+  }
 
-<!-- Fonts -->
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  // Hide after 1 second (guaranteed)
+  setTimeout(hidePreloader, 1000);
 
-<!-- Styles -->
-<link rel="stylesheet" href="style.css" />
-</head>
+  // Also hide on window load (whichever comes first)
+  if (document.readyState === "complete") {
+    hidePreloader();
+  } else {
+    window.addEventListener("load", hidePreloader);
+  }
 
-<body>
+  // Safety fallback — 3 second baad zabardasti hatao
+  setTimeout(hidePreloader, 3000);
 
-<!-- ================= PRELOADER ================= -->
-<div id="preloader">
-  <div class="loader">
-    <span class="loader-bar"></span>
-    <h2>UNISEX GYM <span>SAKTI</span></h2>
-    <p>Loading your fitness journey…</p>
-  </div>
-</div>
+  /* ---------- YEAR IN FOOTER ---------- */
+  var yearEl = document.getElementById("year");
+  if (yearEl) yearEl.textContent = new Date().getFullYear();
 
-<!-- ================= TOP OFFER BAR ================= -->
-<div class="topbar">
-  <div class="topbar-track">
-    <span>🔥 NEW YEAR OFFER — 3 Months @ ₹1999 only</span>
-    <span>💪 FREE Diet Plan with every admission</span>
-    <span>🏋️ Separate Ladies Timing Available</span>
-    <span>📍 Sakti, Chhattisgarh – 495689</span>
-    <span>🔥 NEW YEAR OFFER — 3 Months @ ₹1999 only</span>
-    <span>💪 FREE Diet Plan with every admission</span>
-    <span>🏋️ Separate Ladies Timing Available</span>
-    <span>📍 Sakti, Chhattisgarh – 495689</span>
-  </div>
-</div>
+  /* ---------- STICKY HEADER + BACK TO TOP ---------- */
+  var header = document.getElementById("header");
+  var toTop = document.getElementById("toTop");
 
-<!-- ================= HEADER ================= -->
-<header class="header" id="header">
-  <div class="container nav-wrap">
+  function onScroll() {
+    var y = window.scrollY || window.pageYOffset;
 
-    <a href="#home" class="logo">
-      <span class="logo-icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
-          <path d="M6.5 6.5v11M3.5 9v5M17.5 6.5v11M20.5 9v5M6.5 12h11"/>
-        </svg>
-      </span>
-      <span class="logo-text">
-        <strong>UNISEX GYM</strong>
-        <small>SAKTI · C.G.</small>
-      </span>
-    </a>
+    if (header) {
+      if (y > 40) header.classList.add("scrolled");
+      else header.classList.remove("scrolled");
+    }
 
-    <nav class="nav" id="nav">
-      <ul>
-        <li><a href="#home" class="nav-link active">Home</a></li>
-        <li><a href="#about" class="nav-link">About</a></li>
-        <li><a href="#programs" class="nav-link">Programs</a></li>
-        <li><a href="#pricing" class="nav-link">Pricing</a></li>
-        <li><a href="#gallery" class="nav-link">Gallery</a></li>
-        <li><a href="#trainers" class="nav-link">Trainers</a></li>
-        <li><a href="#contact" class="nav-link">Contact</a></li>
-      </ul>
-      <!-- ✅ NUMBER CHANGED: tel -->
-      <a href="tel:+919123456789" class="btn btn-primary nav-cta">Join Now</a>
-    </nav>
+    if (toTop) {
+      if (y > 500) toTop.classList.add("show");
+      else toTop.classList.remove("show");
+    }
 
-    <button class="hamburger" id="hamburger" aria-label="Menu">
-      <span></span><span></span><span></span>
-    </button>
-  </div>
-</header>
+    updateActiveNav();
+  }
 
-<!-- ================= HERO ================= -->
-<section class="hero" id="home">
-  <div class="hero-bg"></div>
-  <div class="hero-overlay"></div>
+  window.addEventListener("scroll", onScroll, { passive: true });
 
-  <div class="container hero-content">
-    <span class="badge reveal">⭐ Sakti, Chhattisgarh ka #1 Unisex Fitness Destination</span>
+  if (toTop) {
+    toTop.addEventListener("click", function () {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+  }
 
-    <h1 class="reveal">
-      TRAIN HARD.<br />
-      <span class="grad-text">TRANSFORM FAST.</span>
-    </h1>
+  /* ---------- MOBILE MENU ---------- */
+  var hamburger = document.getElementById("hamburger");
+  var nav = document.getElementById("nav");
 
-    <p class="hero-sub reveal">
-      Ladke ho ya ladki — yahan sabke liye jagah hai. World-class equipment,
-      certified trainers aur ek aisa environment jo aapko har din gym aane
-      ke liye motivate kare. <strong>Unisex Gym Sakti</strong> — jahan results bolte hain.
+  if (hamburger && nav) {
+    hamburger.addEventListener("click", function () {
+      hamburger.classList.toggle("active");
+      nav.classList.toggle("open");
+    });
+
+    nav.querySelectorAll("a").forEach(function (link) {
+      link.addEventListener("click", function () {
+        hamburger.classList.remove("active");
+        nav.classList.remove("open");
+      });
+    });
+  }
+
+  /* ---------- ACTIVE NAV LINK ON SCROLL ---------- */
+  var navLinks = document.querySelectorAll(".nav-link");
+  var sections = [];
+
+  navLinks.forEach(function (link) {
+    var id = link.getAttribute("href");
+    if (id && id.charAt(0) === "#") {
+      var sec = document.querySelector(id);
+      if (sec) sections.push({ link: link, section: sec });
+    }
+  });
+
+  function updateActiveNav() {
+    var pos = (window.scrollY || window.pageYOffset) + 130;
+    var current = null;
+
+    sections.forEach(function (item) {
+      if (pos >= item.section.offsetTop) current = item.link;
+    });
+
+    if (current) {
+      navLinks.forEach(function (l) {
+        l.classList.remove("active");
+      });
+      current.classList.add("active");
+    }
+  }
+
+  /* ---------- REVEAL ON SCROLL ---------- */
+  var revealEls = document.querySelectorAll(".reveal");
+
+  if ("IntersectionObserver" in window && revealEls.length) {
+    var io = new IntersectionObserver(
+      function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+            io.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.12 }
+    );
+
+    revealEls.forEach(function (el) {
+      io.observe(el);
+    });
+  } else {
+    revealEls.forEach(function (el) {
+      el.classList.add("visible");
+    });
+  }
+
+  /* ---------- COUNTER ANIMATION ---------- */
+  var counters = document.querySelectorAll(".counter");
+  var counterDone = false;
+
+  function runCounters() {
+    counters.forEach(function (counter) {
+      var target = parseInt(counter.getAttribute("data-target"), 10) || 0;
+      var current = 0;
+      var step = Math.max(1, Math.floor(target / 60));
+
+      var timer = setInterval(function () {
+        current += step;
+        if (current >= target) {
+          current = target;
+          clearInterval(timer);
+        }
+        counter.textContent = current;
+      }, 25);
+    });
+  }
+
+  if (counters.length) {
+    if ("IntersectionObserver" in window) {
+      var counterObserver = new IntersectionObserver(
+        function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting && !counterDone) {
+              counterDone = true;
+              runCounters();
+              counterObserver.disconnect();
+            }
+          });
+        },
+        { threshold: 0.4 }
+      );
+
+      var heroStats = document.querySelector(".hero-stats");
+      if (heroStats) counterObserver.observe(heroStats);
+    } else {
+      runCounters();
+    }
+  }
+
+  /* ---------- BMI CALCULATOR ---------- */
+  var bmiForm = document.getElementById("bmiForm");
+  var bmiValue = document.getElementById("bmiValue");
+  var bmiCategory = document.getElementById("bmiCategory");
+  var bmiAdvice = document.getElementById("bmiAdvice");
+  var bmiCircle = document.querySelector(".bmi-circle");
+
+  if (bmiForm) {
+    bmiForm.addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      var hEl = document.getElementById("height");
+      var wEl = document.getElementById("weight");
+      var height = parseFloat(hEl.value);
+      var weight = parseFloat(wEl.value);
+
+      if (!height || !weight || height < 80 || weight < 20) {
+        bmiCategory.textContent = "Invalid input";
+        bmiAdvice.textContent = "Kripya sahi height aur weight daalein.";
+        bmiValue.textContent = "--";
+        return;
+      }
+
+      var bmi = weight / Math.pow(height / 100, 2);
+      bmi = Math.round(bmi * 10) / 10;
+
+      bmiValue.textContent = bmi;
+
+      var cat, advice, color;
+
+      if (bmi < 18.5) {
+        cat = "Underweight";
+        advice = "Aapko weight gain plan chahiye. Protein-rich diet aur strength training best rahega.";
+        color = "#3b82f6";
+      } else if (bmi < 25) {
+        cat = "Normal ✅";
+        advice = "Great! Aap fit hain. Regular workout se ise maintain karein.";
+        color = "#22c55e";
+      } else if (bmi < 30) {
+        cat = "Overweight";
+        advice = "Cardio + strength training aur controlled diet se fat loss possible hai.";
+        color = "#f59e0b";
+      } else {
+        cat = "Obese";
+        advice = "Personal training aur proper diet plan ki zaroorat hai. Hum madad karenge.";
+        color = "#ef4444";
+      }
+
+      bmiCategory.textContent = cat;
+      bmiAdvice.textContent = advice;
+
+      var deg = Math.min(360, (bmi / 40) * 360);
+      if (bmiCircle) {
+        bmiCircle.style.background =
+          "conic-gradient(" + color + " " + deg + "deg, #222 " + deg + "deg)";
+      }
+
+      bmiValue.style.color = color;
+    });
+  }
+
+  /* ---------- CONTACT FORM → WHATSAPP ---------- */
+  var contactForm = document.getElementById("contactForm");
+
+  if (contactForm) {
+    contactForm.addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      var nameEl = document.getElementById("name");
+      var phoneEl = document.getElementById("phone");
+      var goalEl = document.getElementById("goal");
+      var msgEl = document.getElementById("message");
+
+      var name = nameEl ? nameEl.value.trim() : "";
+      var phone = phoneEl ? phoneEl.value.trim() : "";
+      var goal = goalEl ? goalEl.value : "";
+      var message = msgEl ? msgEl.value.trim() : "";
+
+      if (!name || !phone) {
+        alert("Kripya naam aur mobile number bharein.");
+        return;
+      }
+
+      var text =
+        "🏋️ *Unisex Gym Sakti — Free Trial Request*%0A%0A" +
+        "*Naam:* " + encodeURIComponent(name) + "%0A" +
+        "*Mobile:* " + encodeURIComponent(phone) + "%0A" +
+        "*Goal:* " + encodeURIComponent(goal) + "%0A" +
+        "*Message:* " + encodeURIComponent(message || "—");
+
+      var url = "https://wa.me/" + GYM_NUMBER + "?text=" + text;
+
+      window.open(url, "_blank");
+
+      contactForm.reset();
+    });
+  }
+
+  /* ---------- TESTIMONIAL SLIDER ---------- */
+  var track = document.getElementById("sliderTrack");
+  var dotsWrap = document.getElementById("sliderDots");
+
+  if (track && dotsWrap) {
+    var slides = track.querySelectorAll(".slide");
+    var total = slides.length;
+    var index = 0;
+    var autoTimer;
+
+    if (total > 0) {
+      for (var i = 0; i < total; i++) {
+        (function (n) {
+          var dot = document.createElement("button");
+          dot.setAttribute("aria-label", "Slide " + (n + 1));
+          if (n === 0) dot.classList.add("active");
+          dot.addEventListener("click", function () {
+            goTo(n);
+            resetAuto();
+          });
+          dotsWrap.appendChild(dot);
+        })(i);
+      }
+
+      var dots = dotsWrap.querySelectorAll("button");
+
+      var goTo = function (n) {
+        index = (n + total) % total;
+        track.style.transform = "translateX(-" + index * 100 + "%)";
+        dots.forEach(function (d, i) {
+          d.classList.toggle("active", i === index);
+        });
+      };
+
+      var next = function () {
+        goTo(index + 1);
+      };
+
+      var resetAuto = function () {
+        clearInterval(autoTimer);
+        autoTimer = setInterval(next, 5500);
+      };
+
+      resetAuto();
+
+      var startX = 0;
+      track.addEventListener(
+        "touchstart",
+        function (e) {
+          startX = e.touches[0].clientX;
+        },
+        { passive: true }
+      );
+
+      track.addEventListener("touchend", function (e) {
+        var diff = e.changedTouches[0].clientX - startX;
+        if (Math.abs(diff) > 50) {
+          if (diff < 0) goTo(index + 1);
+          else goTo(index - 1);
+          resetAuto();
+        }
+      });
+    }
+  }
+
+  /* ---------- GALLERY LIGHTBOX ---------- */
+  var lightbox = document.getElementById("lightbox");
+  var lbImg = document.getElementById("lbImg");
+  var lbClose = document.getElementById("lbClose");
+  var galleryItems = document.querySelectorAll(".g-item");
+
+  if (lightbox && lbImg && galleryItems.length) {
+    galleryItems.forEach(function (img) {
+      img.addEventListener("click", function () {
+        lbImg.src = img.src;
+        lbImg.alt = img.alt;
+        lightbox.classList.add("open");
+        document.body.style.overflow = "hidden";
+      });
+    });
+
+    var closeLightbox = function () {
+      lightbox.classList.remove("open");
+      document.body.style.overflow = "";
+    };
+
+    if (lbClose) lbClose.addEventListener("click", closeLightbox);
+
+    lightbox.addEventListener("click", function (e) {
+      if (e.target === lightbox) closeLightbox();
+    });
+
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape" && lightbox.classList.contains("open")) {
+        closeLightbox();
+      }
+    });
+  }
+
+  /* ---------- SMOOTH SCROLL ---------- */
+  document.querySelectorAll('a[href^="#"]').forEach(function (anchor) {
+    anchor.addEventListener("click", function (e) {
+      var targetId = this.getAttribute("href");
+      if (targetId === "#" || targetId === "") return;
+      var target = document.querySelector(targetId);
+      if (target) {
+        e.preventDefault();
+        var offset = 80;
+        var top =
+          target.getBoundingClientRect().top +
+          (window.scrollY || window.pageYOffset) -
+          offset;
+        window.scrollTo({ top: top, behavior: "smooth" });
+      }
+    });
+  });
+})();      ke liye motivate kare. <strong>Unisex Gym Sakti</strong> — jahan results bolte hain.
     </p>
 
     <div class="hero-btns reveal">
