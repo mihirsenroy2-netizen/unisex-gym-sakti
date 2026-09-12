@@ -1222,4 +1222,123 @@ h1, h2, h3, h4 {
   z-index: 800;
   box-shadow: 0 12px 30px rgba(37, 211, 102, 0.4);
   animation: pulse 2s infinite;
-  t
+  transition: var(--transition);
+}
+
+.float-wa:hover {
+  transform: scale(1.1);
+}
+
+@keyframes pulse {
+  0% { 
+    box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.5); 
+  }
+  70% { 
+    box-shadow: 0 0 0 18px rgba(37, 211, 102, 0); 
+  }
+  100% { 
+    box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); 
+  }
+}
+
+/* BACK TO TOP BUTTON */
+#toTop {
+  position: fixed;
+  bottom: 95px;
+  right: 26px;
+  width: 46px;
+  height: 46px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  color: var(--primary);
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-size: 1.2rem;
+  cursor: pointer;
+  z-index: 800;
+  opacity: 0;
+  visibility: hidden;
+  transition: var(--transition);
+}
+
+#toTop.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* LIGHTBOX MODAL */
+.lightbox {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.9);
+  display: none;
+  place-items: center;
+  z-index: 1000;
+}
+
+.lightbox.open {
+  display: grid;
+}
+
+.lightbox img {
+  max-width: 90%;
+  max-height: 80vh;
+  border-radius: 12px;
+}
+
+.lb-close {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  font-size: 2.5rem;
+  color: #fff;
+  cursor: pointer;
+}
+
+/* RESPONSIVE */
+@media (max-width: 992px) {
+  .grid-2,
+  .bmi-wrap,
+  .contact-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  .grid-2.reverse .why-text { order: 2; }
+  .grid-2.reverse .why-img { order: 1; }
+  .footer-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .hamburger {
+    display: flex;
+  }
+  .nav {
+    position: absolute;
+    top: 74px;
+    left: 0;
+    width: 100%;
+    background: var(--card);
+    border-bottom: 1px solid var(--border);
+    flex-direction: column;
+    padding: 24px;
+    display: none;
+  }
+  .nav.open {
+    display: flex;
+  }
+  .nav ul {
+    flex-direction: column;
+    gap: 16px;
+    width: 100%;
+  }
+  .nav-cta {
+    width: 100%;
+    margin-top: 14px;
+  }
+  .footer-grid {
+    grid-template-columns: 1fr;
+  }
+}
